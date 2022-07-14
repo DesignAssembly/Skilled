@@ -1,0 +1,429 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap');
+
+:root {
+
+    //colors
+
+    --clr-light-blue:  #F0F1FF;
+    --clr-purple:      #666CA3;
+    --clr-blue:        #4851FF; 
+    --clr-light-pink:  #FFA7C3;
+    --clr-hot-pink:    #F74780;
+    --clr-grad-pink:   #F02AA6;
+    --clr-orange:      #FF6F48;
+    --clr-light-orange:#FFB6A5;
+    --clr-dark-blue:   #13183F;
+    --clr-gray:        #83869A;
+    --clr-white:       #ffffff;  
+
+    // font-family
+
+    --base-font: 'Plus Jakarta Sans', sans-serif;
+
+   // font sizes
+
+   --base-size: 1rem;
+
+   --headline-1: calc(var(--base-size) * 3.5);
+   --headline-2: calc(var(--base-size) * 2.5);
+   --headline-3: calc(var(--base-size) * 2);
+   --headline-4: calc(var(--base-size) * 1.5);
+   --headline-5: calc(var(--base-size) * 1.25);
+
+   --content-1:  calc(var(--base-size) * 1.125);
+   --content-2:  var(--base-size);
+
+   // font-weight
+
+   --font-med: 500;
+   --font-bold: 700;
+   --font-x-bold: 800;
+
+   // line height
+
+   --base-lh: calc(var(--base-size) * 1.625);
+
+}
+
+// mixins
+
+$breakpoints: (
+    tablet: 48rem,
+    desktop: 80rem
+);
+
+@mixin breakpoint($breakpoint, $logic: false) {
+    @if($logic) {
+@media #{ $logic } and (min-width: map-get($map: $breakpoints, $key: $breakpoint)) { @content; }
+    } @else {
+        @media (min-width: map-get($map: $breakpoints, $key: $breakpoint)) { @content; }
+    }
+}
+
+
+// ********************************Style sections and components
+
+body {
+    color: var(--clr-gray);
+    font-family: var(--base-font);
+    font-size: var(--content-2);
+    line-height: var(--base-lh);
+    -webkit-font-smoothing: antialased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--clr-white);
+
+    @include breakpoint(desktop ) {
+        font-size: var(--content-1);
+        line-height: 1.75rem;
+    }
+}
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.headline-1, .headline-2, .headline-3, .headline-4 {
+    color: var(--clr-dark-blue);
+    font-weight: var(--font-x-bold);
+
+}
+
+.headline-1 {
+    font-size: var(--headline-2);
+    line-height: calc(var(--base-size) * 3.1875);
+    margin-bottom: 1.625rem;
+
+    @include breakpoint(desktop ) {
+        font-size: var(--headline-1);
+        line-height: calc(var(--base-size) * 4.375);
+        margin-bottom: 2rem;
+    }
+
+    
+}
+
+.headline-3 {
+    font-size: var(--headline-2);
+    line-height: calc(var(--base-size) * 3.1875);
+
+    @include breakpoint(tablet ) {
+        font-size: var(--headline-1);
+        line-height: calc(var(--base-size) * 4.375);
+    }
+    
+}
+
+.headline-4 {
+    font-size: var(--headline-5);
+    line-height: calc(var(--base-size) * 3.1875);
+    margin-block-end: .25rem;
+
+    @include breakpoint(desktop ) {
+        font-size: var(--headline-4);
+        line-height: calc(var(--base-size) * 4.375);
+    }
+}
+
+// content
+
+.services {
+    background: linear-gradient(180deg, var(--clr-white) 0%, var(--clr-light-blue) 100%);
+    padding-block-end:5rem ;
+    
+
+    @include breakpoint(tablet) {
+        padding-bottom: 2.5rem;
+    }
+
+    @include breakpoint(desktop) {
+        padding-bottom: 8.75rem;
+    }
+}
+
+.container {
+    max-width: 1110px;
+    margin-inline: auto;
+    padding-inline: var(--base-size);
+
+    @include breakpoint(tablet) {
+        max-width: 1190px;
+        padding-inline: calc(var(--base-size) * 2.5);
+    }
+}
+
+//layout
+
+.wrapper {
+    overflow: hidden;
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-1-3 {
+    gap: 40px;
+
+    @include breakpoint(tablet) {
+        gap: 11px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include breakpoint(desktop) {
+        gap: 80px 30px ;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.grid-1-1 {
+    @include breakpoint(tablet) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.flex {
+    display: flex;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.ai-c {
+    align-items: center;
+}
+
+.max-m {
+    max-width: 27rem;
+}
+
+// header
+
+.header {
+    padding-block: 1rem;
+    position: relative;
+    z-index: 10;
+
+    @include breakpoint(tablet ) {
+        padding-block: 1.5rem;
+    }
+
+}
+
+.logo {
+    width: 88px;
+    @include breakpoint(desktop ) {
+        width: 112px;
+    }
+}
+
+// Hero Section
+
+.hero {
+    padding-block: 1.25rem;
+
+    @include breakpoint(tablet ) {
+        padding-block: 4.75rem 13rem;
+    }
+
+    @include breakpoint(desktop ) {
+        padding-block: 9.25rem 15.75rem;
+
+        button {
+            margin-block-start: 2.375rem;
+            height: 3.9375rem;
+        }
+    }
+}
+
+.hero-visual {
+    
+    transform: scale(1.275);
+    margin-block-start: 4.375rem;
+    display: flex;
+    justify-content: center;
+
+    @include breakpoint(tablet) {
+        transform: scale(1.075);
+        margin-block-start: 0;
+    }
+
+    @include breakpoint(tablet) {
+        transform: scale(1);
+        margin-block-start: 0;
+    }
+
+    picture {
+
+        @include breakpoint(tablet) {
+        position: absolute;
+        top: -240px;
+        right: -305px;
+        }
+
+        @include breakpoint(desktop) {
+            top: -398px;
+            right: -502px;
+        }
+    }
+}
+
+
+// cards
+
+.card {
+    background-color: var(--clr-white);
+    padding-inline: 1.75rem;
+    padding-block: 2.75rem 2rem;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0px 25px 50px rgba(6, 22, 141, 0.0442381);
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(tablet) {
+        padding-inline: 1.95rem 1.25rem;
+        margin-bottom: 2.8125rem;
+    }
+
+    @include breakpoint(desktop ) {
+        border-radius: 15px;  
+        padding-inline: 2rem;
+        padding-block: 2.75rem 2.5rem;
+        margin-bottom: 0;
+        
+    }
+
+    &--grad {
+        @extend .card;
+        background: linear-gradient(180deg, var(--clr-orange) 0%, var(--clr-grad-pink) 100%);
+        color: var(--clr-white);
+        padding-inline: 1.75rem;
+        padding-block: 1.5rem 2rem;
+
+        @include breakpoint(tablet) {
+            padding-block: 3.5rem 2rem;
+        }
+
+        @include breakpoint(desktop) {
+            padding-block: 4rem 2rem;
+            padding-inline: 2rem;
+        }
+
+        .headline-4 {
+            color: var(--clr-white);
+            line-height: 1.35;
+            font-size: 24px;
+            margin-block-end: 0;
+
+            @include breakpoint(desktop ) {
+                font-size: 32px;
+                line-height: 1.25;
+            }
+        }
+    }
+
+    &__icon {
+        position: absolute;
+        top: -1.5rem;
+        left: 1.75rem;
+
+        @include breakpoint(tablet) {
+            left: 1.95rem ;
+        }
+    }
+
+    p {
+        flex: 1;
+    }
+}
+
+//buttons $ links
+
+.btn {
+    background: var(--clr-dark-blue);
+    color: var(--clr-white);
+    border: none;
+    padding-inline: 1.5rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    font-weight: var(--font-bold);
+    font-size: var(--base-size);
+    cursor: pointer;
+    transition: background-color .2s ease-in-out;
+
+    &:hover {
+        background: var(--clr-purple); 
+    }
+
+    &--l {
+        @extend .btn;
+        height: 3.5rem;
+        padding-inline: 2.35rem;
+
+        @include breakpoint(desktop) {
+            height: 3.9375rem;
+        }
+    }
+
+    &--grad {
+        @extend .btn;
+        background: linear-gradient(180deg, var(--clr-orange) 0%, var(--clr-grad-pink) 100%);
+        
+
+        &:hover {
+            background:linear-gradient(180deg, var(--clr-light-orange) 0%, var(--clr-light-pink) 100%); ;
+        }
+    }
+
+    
+
+    @include breakpoint(desktop) {
+        height: 3.5rem;
+        padding-inline: 2rem;
+        font-size: calc(var(--base-size) * 1.125);
+    }
+
+}
+
+.link {
+    text-decoration: none;
+    color: var(--clr-hot-pink);
+    font-weight: var(--font-bold);
+    font-size: 1.125rem;
+
+    &:hover {
+        color: var(--clr-light-pink);
+    }
+}
+
+
+
+//footer
+
+.footer {
+    background-color: var(--clr-dark-blue);
+    padding-block: 2.25rem;
+}
+
+.logo--footer img {
+    width: 5.375rem;
+
+    @include breakpoint(desktop ) {
+        width: 7rem;
+    }
+}
